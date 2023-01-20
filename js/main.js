@@ -27,7 +27,7 @@ function verifyName() {
   nameVerified.catch(invalidName);
 }
 
-function validName(entered) {
+function validName() {
   setInterval(() => {
 
     axios.post('https://mock-api.driven.com.br/api/v6/uol/status', nickname);
@@ -37,8 +37,8 @@ function validName(entered) {
 
 function invalidName() {
   alert('o nome já está sendo utilizado!');
-  getName();
-  verifyName();
+  // getName();
+  // verifyName();
 };
 
 getName();
@@ -52,7 +52,7 @@ function loadMessages() {
 loadSeconds();
 
 function loadSeconds() {
-  setInterval(loadMessages, 1500);
+  setInterval(loadMessages, 3000);
 }
 
 let a = "";
@@ -112,21 +112,23 @@ function scrollLastMsg() {
 }
 
 function sendMessage() {
-  if (document.querySelector(".input-message").value !== "") {
-    const envio = {
+  const messageValue = document.querySelector(".input-message").value;
+
+  if (messageValue !== "") {
+    const send = {
       from: nickname.name,
       to: "Todos",
-      text: document.querySelector(".input-message").value,
+      text: messageValue,
       type: "message",
     };
 
     const promise = axios.post(
       "https://mock-api.driven.com.br/api/v6/uol/messages",
-      envio
+      send
     );
     promise.then(loadMessages);
     promise.catch(reloadPage);
-    document.querySelector(".input-message").value = "";
+    messageValue = "";
   } else {
     alert("Você não pode enviar uma message vazia!");
   }
@@ -136,7 +138,7 @@ function reloadPage() {
   window.location.reload();
 }
 
-document.addEventListener("keypress", function (e) {
+document.addEventListener("keypress", e => {
   if (e.key === "Enter") {
     sendMessage();
   }
