@@ -37,8 +37,8 @@ function validName() {
 
 function invalidName() {
   alert('o nome já está sendo utilizado!');
-  // getName();
-  // verifyName();
+  getName();
+  verifyName();
 };
 
 getName();
@@ -80,7 +80,7 @@ function renderMessages(messages) {
       messageList.push(message);
     }
     if (messages.data[i].type === "private_message") {
-      message = `<li class="private-message" data-test="message"><div><span class="hour">(${messages.data[i].time})</span><span class="space">l</span><span class="user">${messages.data[i].from}</span><span class="space">l</span>reservadamente para<span class="space">l</span><span class="user">${messages.data[i].to}</span><span>:</span><span class="space">l</span><span>${messages.data[i].text}</span> </div></li>`;
+      message = `<li class="private-msg" data-test="message"><div><span class="hour">(${messages.data[i].time})</span><span class="space">l</span><span class="user">${messages.data[i].from}</span><span class="space">l</span>reservadamente para<span class="space">l</span><span class="user">${messages.data[i].to}</span><span>:</span><span class="space">l</span><span>${messages.data[i].text}</span> </div></li>`;
       if (messages.data[i].to === nickname.name) {
         messageList.push(message);
       }
